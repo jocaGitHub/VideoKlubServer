@@ -25,5 +25,8 @@ public interface ClanRepository extends JpaRepository<Clan, String>{
 
     @Query("SELECT c.clanid FROM Clan c ORDER BY c.clanid DESC")
     public List<String> findAllID();
+
+    @Query("SELECT c.jmbg FROM Clan c")
+    public List<String> findAllJmbg();
     
 }

@@ -41,7 +41,8 @@ public class ClanServiceImpl implements ClanService{
 
     @Override
     public Clan save(Clan clan) throws Exception {
-        ClanValidation.zapamtiClana(clan);
+        List<String>jmbgList = clanRepository.findAllJmbg();
+        ClanValidation.zapamtiClana(clan,jmbgList);
         if(clan.getClanid().equals("-1")){
             clan.setClanid(vratiID());
         }

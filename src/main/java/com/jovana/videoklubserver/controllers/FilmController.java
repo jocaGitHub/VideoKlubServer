@@ -93,7 +93,7 @@ public class FilmController {
             try {
                 filmDB= filmService.save(film);
             } catch (Exception ex) {
-                return new ResponseEntity<>(new WsDto<Film>(null, WsDto.ERROR, "film se ne moze sacuvati"), HttpStatus.OK);
+                return new ResponseEntity<>(new WsDto<Film>(null, WsDto.ERROR, "film se ne moze sacuvati "+ex.getMessage()), HttpStatus.OK);
             }
             return new ResponseEntity<>(new WsDto<Film>(filmDB, WsDto.SUCCESS, "sistem je sacuvao film"), HttpStatus.OK);
         }

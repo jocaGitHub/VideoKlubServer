@@ -85,7 +85,7 @@ public class ZaduzenjeController {
                 zaduzenjeDB= zaduzenjeService.save(zaduzenje);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                return new ResponseEntity<>(new WsDto<Zaduzenje>(null, WsDto.ERROR, "zaduzenje se ne moze sacuvati"), HttpStatus.OK);
+                return new ResponseEntity<>(new WsDto<Zaduzenje>(null, WsDto.ERROR, "zaduzenje se ne moze sacuvati" + ex.getMessage()), HttpStatus.OK);
             }
             return new ResponseEntity<>(new WsDto<Zaduzenje>(zaduzenjeDB, WsDto.SUCCESS, "sistem je sacuvao zaduzenje"), HttpStatus.OK);
         }

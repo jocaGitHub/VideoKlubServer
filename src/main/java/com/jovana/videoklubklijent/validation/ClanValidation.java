@@ -7,23 +7,24 @@ package com.jovana.videoklubklijent.validation;
 
 import com.jovana.videoklubzajednicko.domen.Clan;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author jmoldovan
  */
 public class ClanValidation {
-    public static void zapamtiClana(Clan trenutniClan) throws Exception{
+    public static void zapamtiClana(Clan trenutniClan, List<String> jmbgList) throws Exception{
         // validacija 1
         if (trenutniClan == null || trenutniClan.getIme() == null || trenutniClan.getPrezime() == null || trenutniClan.getJmbg() == null
                 || trenutniClan.getDatumosnivanja() == null) {
             throw new Exception("Polja: ime, prezime, jmbg i datum rodjenjda ne smeju biti prazna.");
         }
         
-        validacijaJMBG(trenutniClan.getJmbg());
+        validacijaJMBG(trenutniClan.getJmbg(),jmbgList);
     }
     
-    private static void validacijaJMBG(String jmbg) throws Exception{
+    private static void validacijaJMBG(String jmbg, List<String> jmbgList) throws Exception{
         char[] niz = jmbg.toCharArray();
 
         if(niz.length!=13) {
@@ -35,6 +36,10 @@ public class ClanValidation {
             if (!Character.isDigit(c)) {
                 throw new Exception("JMBG mora da sadrzi samo cifre.");
             }
+        }
+        
+        if(jmbgList.contains(jmbg)){
+            throw new Exception("Vec postoji clan sa takvim jmbg-om");
         }
     }
 }

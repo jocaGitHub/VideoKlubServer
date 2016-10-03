@@ -97,7 +97,7 @@ public class ClanController {
             try {
                 clanDB= clanService.save(clan);
             } catch (Exception ex) {
-                return new ResponseEntity<>(new WsDto<Clan>(null, WsDto.ERROR, "clan se ne moze sacuvati"), HttpStatus.OK);
+                return new ResponseEntity<>(new WsDto<Clan>(null, WsDto.ERROR, "clan se ne moze sacuvati "+ ex.getMessage()), HttpStatus.OK);
             }
             return new ResponseEntity<>(new WsDto<Clan>(clanDB, WsDto.SUCCESS, "sistem je sacuvao clana"), HttpStatus.OK);
         }
